@@ -1,0 +1,6 @@
+require('lfpp')(function()
+local lfrt = require('lfrt')
+log('test program!')
+log(lfrt:lfar(arg[1], table.unpack(arg, 2, -1)))
+log('Done!')
+end)

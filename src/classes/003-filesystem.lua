@@ -1,0 +1,1 @@
+class.lfrt.api.api(fs, 'lfrt:filesystem', 0)

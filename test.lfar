@@ -1,0 +1,23 @@
+{
+  ["/Test"] = {
+    type = "dir"
+  },
+  ["/Test/class"] = {
+    type = "dir"
+  },
+  ["/Test/class/001-mainclass.lua"] = {
+    content = "--create needed types--\n--items\nclass:append(class:newType('opentycoon:Item', {\n\9constructor = function(cls, clst, item)\n\9\9function item:buy(amount)\n\9\9\9local game = cls:getAPI('opentycoon:game', 0)\n\9\9\9if game.session.money >= amount * self.price then\n\9\9\9\9game.session.money = game.session.money - amount * self.price\n\9\9\9\9self.amount = self.amount + amount\n\9\9\9\9game.push()\n\9\9\9\9self.push()\n\9\9\9\9return true game.session.money, self.price * amount\n\9\9\9else\n\9\9\9\9return false, game.session.money, self.price * amount\n\9\9\9end\n\9\9end\n\9\9function self:sell(amount)\n\9\9\9local game = cls:getAPI('opentycoon:game', 0)\n\9\9\9if self.amount >= amount then\n\9\9\9\9game.session.money = game.session.money - amount * (self.price * self.profit)\n\9\9\9\9self.amount = self.amount - amount\n\9\9\9\9game.push()\n\9\9\9\9self.push()\n\9\9\9\9return true (self.price * self.profit) * amount, amount\n\9\9\9else\n\9\9\9\9return false, (self.price * self.profit) * amount, amount\n\9\9\9end\n\9\9end\n\9\9return item\n\9end,\n}))\n--command\nlocal cmds = {}\ndo\n\9class:append(class:newType('opentycoon:Command', {\n\9\9constructor = function(cls, clsT, id, man, cb)\n\9\9\9cmds[id:split(':')[2]] = {id=id, help=man, cb=cb}\n\9\9\9return {id=id, help=man, cb=cb}\n\9\9end,\n\9\9execute = function(name, ...)\n\9\9\9return pcall(cmd[name].cb, ...)\n\9\9end,\n\9}))\nend",
+    type = "file"
+  },
+  ["/Test/startup"] = {
+    type = "dir"
+  },
+  ["/Test/startup/Shell.lua"] = {
+    content = "while true do\n\9\nend",
+    type = "file"
+  },
+  ["/_MAIN_.lua"] = {
+    content = "local term = class:getAPI('lfrt:term', 0)\nlocal fs = class:getAPI('lfrt:filesystem', 0)\nclass:addSearcher('opentycoon')\nlocal classes = ''\nfor i=0, 500 do \n\9for _, fn in fs.list(lfarP .. '/Test/class', true)\n\9\9if tonumber(fn:split('/')[-1]:sub(1, 3)) == i then\n\9\9\9local f = fs.open(fn, 'r')\n\9\9\9classes = classes .. '--[[' .. f .. ']]--\\n' .. f:read('*a') .. '\\n'\n\9\9\9f:close()\n\9\9end\n\9end\nend\n_G.config = {\n\9tmpp = lfarP .. 'Test',\n\9di = '/',\n\9username = 'User',\n\9guid = 0,\n}\nlocal f = io.open(config.tmpp .. '/startup/CMD.lua')\nclasses = classes .. '\\n' .. f:read('*all')\nf:close()\nlog(pcall(dostring(classes)))",
+    type = "file"
+  }
+}
