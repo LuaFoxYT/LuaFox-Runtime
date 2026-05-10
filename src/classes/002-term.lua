@@ -1,8 +1,10 @@
 local term = {
   write = function(txt)
-    io.write(txt)
+    io.write(tostring(txt))
   end,
   read = function(callback, cont)
+  	assert(type(callback) == 'function', 'invalid argument #1, function expected got ' .. type(callback))
+  	assert(type(cont) == 'boolean', 'invalid argument #2, boolean expected got ' .. type(cont)))
     coroutine.resume(coroutine.create(function()
       if cont then
         repeat
@@ -15,6 +17,9 @@ local term = {
         end
       end
     end))
+  end,
+  clear = function()
+  	return os.execute('clear')
   end
 }
 class.lfrt.api.api(term, 'lfrt:term', 0)

@@ -20,6 +20,13 @@ end
 --filesystem--
 do
   local fs = {}
+  fs.paths = {
+AppData = os.getenv('HOME') .. '/.config/',
+User = os.getenv("HOME") .. '/',
+lfrtBin = os.getenv('HOME') .. '/.config/lfrt/prg/',
+lfrtLib = os.getenv('HOME') .. '/.config/lfrt/lib/',
+lfrt = os.getenv('HOME') .. '/.config/lfrt/'
+}
   fs.exists = function(path)
     if lfs.touch(path) then
       return true
@@ -47,12 +54,13 @@ do
   fs.list = function(path, isFull, recurse)
     local out = {}
     local function cycle(s, p)
-      for f in lfs.dir(path) do
-        if fs.attributes(path .. f).mode == 'file' then
+      for f in lfs.dir(s .. p) do
+       if f ~= '.' and f ~= '..' then
+        if fs.attributes(s .. p .. '/' ..  f).mode == 'file' then
           if isFull then
-            table.insert(out, path .. '/' .. f)
+            table.insert(out, s .. p .. '/' .. f)
           else
-            table.insert(out, f) 
+            table.insert(out, p .. '/' .. f) 
           end
         else
           cycle(s, p .. '/' .. f)
@@ -62,17 +70,20 @@ do
             table.insert(out, p .. '/' .. f)
           end
         end
+end
       end
     end
     if recurse then
     	cycle(path, '')
     else
     	for f in lfs.dir(path) do
+        if f ~= '.' and f ~= '..' then
     		if isFull then
     			table.insert(out, path .. '/' .. f)
     		else
     			table.insert(out, f) 
     		end
+end
     	end
     end
     return out
@@ -86,7 +97,7 @@ do
           if f ~= '.' and f ~= '..' then
             if lfs.attributes(s .. p .. '/' .. f).mode == 'file' then
               os.remove(s .. p .. '/' .. f)
-            elseif lfs.attributes(s .. p .. './' .. f).mode == 'directory' then
+            elseif lfs.attributes(s .. p .. '/' .. f).mode == 'directory' then
               cycle(s, p .. '/' .. f)
               lfs.rmdir(s .. p .. '/' ..  f)
             end
@@ -94,13 +105,14 @@ do
         end
       end
       cycle(path, "")
+		lfs.rmdir(path)
     else
       os.remove(path)
     end
   end
   fs.pwd = function(val)
     if val then
-      lfs.chwdir(val)
+      lfs.chdir(val)
     end
     return lfs.currentdir()
   end
@@ -117,12 +129,12 @@ _G.log = function(...)
 end
 return function(cb, ...)
 	local tb = {pcall(cb, ...)}
-	f:flush()
-	f:close()
 	if not tb[1] then
 		log('Error: ' .. tb[2])
 		return nil, tb[2]
 	end
+	f:flush()
+	f:close()
 	return table.unpack(tb, 2, -1)
 end
 end

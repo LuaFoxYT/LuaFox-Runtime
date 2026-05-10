@@ -1,0 +1,1 @@
+lua $HOME/.config/lfrt/lfrtcl.lua $@

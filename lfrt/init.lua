@@ -38,6 +38,13 @@ function class:getById(t, id)\
     \9end\
     end\
   end\
+  if not self[a[1]] then\
+\9return nil\
+  elseif not self[a[1]][t] then\
+\9return nil\
+  elseif not self[a[1]][t][a[2]] then\
+\9return nil\
+end\
   return self[a[1]][t][a[2]]\
 end\
 function class:setById(t, id, val)\
@@ -98,6 +105,9 @@ function class:newType(id, tb)\
 end\
 function class:getAPI(id, version)\
   local a = self:getById(\"api\", id)\
+  if not a then\
+  \9error('API not defined (API: ' .. id .. ' v' .. version, 2)\
+  end\
   local b = a.VERSIONS[version]\
   b.version = version\
   setmetatable(b, {__index=function(s, k)\
@@ -114,57 +124,126 @@ function class:getAPI(id, version)\
   return b\
 end\
 --[[--LFRT-Domain--]]--\
---[[001-api.lua]]--\
---creation of api ClassType--\
-class:append(class:newType(\"lfrt:api\", {\
-  constructor = function(cls, clst, api, id, version)\
-  \9log('creating api: ' .. id .. ' version ' .. version)\
-    local a = {VERSIONS={}, id=id}\
-    if cls:getById(\"api\", id) then\
-      a = cls:getByID(\"api\", id)\
-    end\
-    a.VERSIONS[version] = api\
-    return a\
-  end\
-}))\
---[[002-term.lua]]--\
-local term = {\
-  write = function(txt)\
-    io.write(txt)\
-  end,\
-  read = function(callback, cont)\
-    coroutine.resume(coroutine.create(function()\
-      if cont then\
-        repeat\
-        ok, go = pcall(callback, io.read('*line'))\
-        until not ok or go == true\
-      else\
-        local ok, r pcall(callback, io.read('*line'))\
-        if ok == false then\
-        \9log('term.read error: ', r)\
-        end\
-      end\
-    end))\
-  end\
-}\
-class.lfrt.api.api(term, 'lfrt:term', 0)\
---[[003-filesystem.lua]]--\
-class.lfrt.api.api(fs, 'lfrt:filesystem', 0)\
---[[356-runtime.lua]]--\
-local lfar = require(\"lfrt.lfar\")\
---local lfsp = require('lfsp')\
-class.lfrt.api.api({\
-  execLFAR = function(path, ...)\
-  lfar.run(path, nil, ...)\
-  end,\
-}, 'lfrt:runtime', 0)\
+--[[classtype: 001-api.lua]]--\
+ local f, r = load(\"--creation of api ClassType--\\\
+class:append(class:newType(\\\"lfrt:api\\\", {\\\
+  constructor = function(cls, clst, api, id, version)\\\
+  \\9log('creating api: ' .. id .. ' version ' .. version)\\\
+    local a = {VERSIONS={}, id=id}\\\
+    if cls:getById(\\\"api\\\", id) then\\\
+      a = (cls:getByID(\\\"api\\\", id) or {VERSIONS={}, id=id})\\\
+    end\\\
+    a.VERSIONS[version] = api\\\
+    return a\\\
+  end\\\
+}))\", \"=classtype: 001-api.lua\", \"t\", _ENV)\
+if f then local ok, re =  pcall(f, ...)\
+ if not ok then log(re) end else log(tostring(r)) end\
+--[[classtype: 002-term.lua]]--\
+ local f, r = load(\"local term = {\\\
+  write = function(txt)\\\
+    io.write(txt)\\\
+  end,\\\
+  read = function(callback, cont)\\\
+    coroutine.resume(coroutine.create(function()\\\
+      if cont then\\\
+        repeat\\\
+        ok, go = pcall(callback, io.read('*line'))\\\
+        until not ok or go == true\\\
+      else\\\
+        local ok, r pcall(callback, io.read('*line'))\\\
+        if ok == false then\\\
+        \\9log('term.read error: ', r)\\\
+        end\\\
+      end\\\
+    end))\\\
+  end\\\
+}\\\
+class.lfrt.api.api(term, 'lfrt:term', 0)\", \"=classtype: 002-term.lua\", \"t\", _ENV)\
+if f then local ok, re =  pcall(f, ...)\
+ if not ok then log(re) end else log(tostring(r)) end\
+--[[classtype: 003-filesystem.lua]]--\
+ local f, r = load(\"class.lfrt.api.api(fs, 'lfrt:filesystem', 0)\", \"=classtype: 003-filesystem.lua\", \"t\", _ENV)\
+if f then local ok, re =  pcall(f, ...)\
+ if not ok then log(re) end else log(tostring(r)) end\
+--[[classtype: 004-tbfs.lua]]--\
+ local f, r = load(\"do\\\
+  local tbfs = {} \\\
+  tbfs.read = function(ap, fp)\\\
+    local f = fs.open(ap, 'r')\\\
+     local dat = table.parse(f:read('*all'))[fp].content\\\
+    f:flush()\\\
+\\9\\9f:close()\\\
+    return dat\\\
+  end\\\
+  function tbfs.extract(fr, to)\\\
+    local f = fs.open(fr, 'r')\\\
+    local tb = table.parse(f:read('*all'))\\\
+    f:close()\\\
+    for path, stats in pairs(tb) do\\\
+      fs.create(to .. path, stats.content)\\\
+    end\\\
+  end\\\
+  function tbfs.compress(from, to)\\\
+  \\9local tb = {}\\\
+  \\9for _, fn in ipairs(fs.list(from, false, true)) do\\\
+  \\9\\9if fs.attributes(from .. fn).mode == 'file' then\\\
+  \\9\\9\\9local f = fs.open(from .. fn, 'rb')\\\
+  \\9\\9\\9local dat = f:read('*all')\\\
+  \\9\\9\\9f:flush()\\\
+  \\9\\9\\9f:close()\\\
+  \\9\\9\\9tb[fn] = {type='file', content=dat, date=0}\\\
+  \\9\\9else\\\
+  \\9\\9\\9tb[fn] = {type='dir', date=0}\\\
+  \\9\\9end\\\
+  \\9end\\\
+  \\9local f = fs.open(to, 'w+')\\\
+  \\9f:write(table.stringify(tb))\\\
+  \\9f:flush()\\\
+  \\9f:close()\\\
+  end\\\
+\\9class.lfrt.api.api(tbfs, 'lfrt:tbfs', 0)\\\
+end\", \"=classtype: 004-tbfs.lua\", \"t\", _ENV)\
+if f then local ok, re =  pcall(f, ...)\
+ if not ok then log(re) end else log(tostring(r)) end\
+--[[classtype: 005-json.lua]]--\
+ local f, r = load(\"class.lfrt.api.api((require('json') or {}), 'lfrt:json', 0)\", \"=classtype: 005-json.lua\", \"t\", _ENV)\
+if f then local ok, re =  pcall(f, ...)\
+ if not ok then log(re) end else log(tostring(r)) end\
+--[[classtype: 356-runtime.lua]]--\
+ local f, r = load(\"local lfar = require(\\\"lfrt.lfar\\\")\\\
+--local lfsp = require('lfsp')\\\
+class.lfrt.api.api({\\\
+  execLFAR = function(path, ...)\\\
+  lfar.run(path, nil, ...)\\\
+  end,\\\
+  chunkBuffer = function(data, ch)\\\
+\\9\\9return '--[[' .. ch .. ']]--\\\\n local f, r = load(' .. string.format('%q, %q, ', data, '=' .. ch) .. '\\\"t\\\", _ENV)\\\\nif f then local ok, re =  pcall(f)\\\\n if not ok then log(re) end else log(tostring(r)) end\\\\n'\\\
+\\9end,\\\
+}, 'lfrt:runtime', 0)\", \"=classtype: 356-runtime.lua\", \"t\", _ENV)\
+if f then local ok, re =  pcall(f, ...)\
+ if not ok then log(re) end else log(tostring(r)) end\
 "
 
 local lfar = require('lfrt.lfar')
 local lfrt = {}
+local function buff(data, ch)
+	return '--[[' .. ch .. ']]--\n local f, r = load(' .. string.format('%q, %q, ', data, '=' .. ch) .. '"t", _ENV)\nif f then local ok, re =  pcall(f, ...)\n if not ok then log(re) end else log(tostring(r)) end\n'
+end
+for i=1, 678 do
+	for _, fn in ipairs(fs.list(os.getenv("HOME") .. '/.config/lfrt/lib', true)) do
+		if tonumber(fn:split('/')[#(fn:split('/'))]:sub(1, 3)) == i then
+			local f0 = fs.open(fn, 'r')
+			 BuiltBuffer = BuiltBuffer .. buff(f0:read('*all'), 'External: ' .. fn)
+			f0:flush()
+			f0:close()
+		end
+	end
+end
+
 function lfrt.run(buffer, ...)
-	local a = BuiltBuffer .. '\n' .. buffer
-	--print(a)
+	local a = 'log(\'--[LuaFox Runtime Initialization]--\')\n' .. BuiltBuffer .. 'log(\'--[Appliation Start]--\')\n' .. buff(buffer, 'Application Main Chunk')
+	--log(a)
 	local f, r = load(a, '=lfrt')
 	if f then
 		return pcall(f, ...)
@@ -177,13 +256,18 @@ lfrt.lfar = function(self, path, ...)
     f:flush()
     f:close()
     for k, v in pairs(tb) do
-      fs.create('./lfar' .. k, v.content)
+      fs.create('./.lfar' .. k, v.content)
     end
-    local f = fs.open('./lfar/_MAIN_.lua', 'r')
+    local f = fs.open('./.lfar/_MAIN_.lua', 'r')
     local dat = f:read('*all')
     f:flush()
     f:close()
-    _G.lfarP = './lfar/'
-    return self.run(dat, ...)
+    _G.lfarP = './.lfar/'
+    return (function(...)
+	local tb = table.pack(self.run(dat, ...))
+	fs.remove('./.lfar/')
+	return table.unpack(tb, 1, -1)
+	end)(...)
   end
 return lfrt
+

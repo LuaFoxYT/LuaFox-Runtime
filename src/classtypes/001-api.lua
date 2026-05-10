@@ -4,7 +4,7 @@ class:append(class:newType("lfrt:api", {
   	log('creating api: ' .. id .. ' version ' .. version)
     local a = {VERSIONS={}, id=id}
     if cls:getById("api", id) then
-      a = cls:getByID("api", id)
+      a = (cls:getByID("api", id) or {VERSIONS={}, id=id})
     end
     a.VERSIONS[version] = api
     return a

@@ -1,0 +1,1 @@
+class.lfrt.api.api(require('json'), 'TheLuaFox86:json', 0)

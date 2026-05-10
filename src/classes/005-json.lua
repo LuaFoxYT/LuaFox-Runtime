@@ -1,0 +1,1 @@
+class.lfrt.api.api((require('json') or {}), 'lfrt:json', 0)

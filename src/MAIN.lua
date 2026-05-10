@@ -37,6 +37,13 @@ function class:getById(t, id)
     	end
     end
   end
+  if not self[a[1]] then
+	return nil
+  elseif not self[a[1]][t] then
+	return nil
+  elseif not self[a[1]][t][a[2]] then
+	return nil
+end
   return self[a[1]][t][a[2]]
 end
 function class:setById(t, id, val)
@@ -97,7 +104,13 @@ function class:newType(id, tb)
 end
 function class:getAPI(id, version)
   local a = self:getById("api", id)
+  if not a then
+  	error('API not defined (API: ' .. id .. ' v' .. version, 2)
+  end
   local b = a.VERSIONS[version]
+  if not b then
+  	error('API of that version not available (API: ' .. id .. ' v' .. version, 2)
+  end
   b.version = version
   setmetatable(b, {__index=function(s, k)
     if k == "pull" then
