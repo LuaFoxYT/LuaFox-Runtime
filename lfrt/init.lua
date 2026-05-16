@@ -109,6 +109,9 @@ function class:getAPI(id, version)\
   \9error('API not defined (API: ' .. id .. ' v' .. version, 2)\
   end\
   local b = a.VERSIONS[version]\
+  if not b then\
+  \9error('API of that version not available (API: ' .. id .. ' v' .. version, 2)\
+  end\
   b.version = version\
   setmetatable(b, {__index=function(s, k)\
     if k == \"pull\" then\
@@ -142,9 +145,11 @@ if f then local ok, re =  pcall(f, ...)\
 --[[classtype: 002-term.lua]]--\
  local f, r = load(\"local term = {\\\
   write = function(txt)\\\
-    io.write(txt)\\\
+    io.write(tostring(txt))\\\
   end,\\\
   read = function(callback, cont)\\\
+  \\9assert(type(callback) == 'function', 'invalid argument #1, function expected got ' .. type(callback))\\\
+  \\9assert(type(cont) == 'boolean', 'invalid argument #2, boolean expected got ' .. type(cont)))\\\
     coroutine.resume(coroutine.create(function()\\\
       if cont then\\\
         repeat\\\
@@ -157,6 +162,9 @@ if f then local ok, re =  pcall(f, ...)\
         end\\\
       end\\\
     end))\\\
+  end,\\\
+  clear = function()\\\
+  \\9return os.execute('clear')\\\
   end\\\
 }\\\
 class.lfrt.api.api(term, 'lfrt:term', 0)\", \"=classtype: 002-term.lua\", \"t\", _ENV)\
@@ -170,13 +178,20 @@ if f then local ok, re =  pcall(f, ...)\
  local f, r = load(\"do\\\
   local tbfs = {} \\\
   tbfs.read = function(ap, fp)\\\
+  \\9assert(type(ap) == 'string', 'invalid argument #1; expected string got ' .. type(ap))\\\
+  \\9assert(type(fp) == 'string', 'invalid argument #2; expected string got ' .. type(fp))\\\
+  \\9assert(fs.exists(ap), 'archive not found at ' .. ap)\\\
     local f = fs.open(ap, 'r')\\\
-     local dat = table.parse(f:read('*all'))[fp].content\\\
+     local dat = table.parse(f:read('*all'))[fp]\\\
+     assert(dat, 'file in archive not found at' .. fp)\\\
     f:flush()\\\
 \\9\\9f:close()\\\
     return dat\\\
   end\\\
   function tbfs.extract(fr, to)\\\
+  \\9assert(type(fr) == 'string', 'invalid argument #1; expected string got ' .. type(fr))\\\
+  \\9assert(type(to) == 'string', 'invalid argument #2; expected string got ' .. type(to))\\\
+  \\9assert(fs.exists(fr), 'file not found; ' .. fr)\\\
     local f = fs.open(fr, 'r')\\\
     local tb = table.parse(f:read('*all'))\\\
     f:close()\\\
@@ -185,6 +200,9 @@ if f then local ok, re =  pcall(f, ...)\
     end\\\
   end\\\
   function tbfs.compress(from, to)\\\
+  \\9assert(type(from) == 'string', 'invalid argument #1; expected string got ' .. type(from))\\\
+  \\9assert(type(to) == 'string', 'invalid argument #2; expected string got ' .. type(to))\\\
+  \\9assert(fs.exists(from), 'file not found; ' .. fr)\\\
   \\9local tb = {}\\\
   \\9for _, fn in ipairs(fs.list(from, false, true)) do\\\
   \\9\\9if fs.attributes(from .. fn).mode == 'file' then\\\
@@ -208,6 +226,11 @@ if f then local ok, re =  pcall(f, ...)\
  if not ok then log(re) end else log(tostring(r)) end\
 --[[classtype: 005-json.lua]]--\
  local f, r = load(\"class.lfrt.api.api((require('json') or {}), 'lfrt:json', 0)\", \"=classtype: 005-json.lua\", \"t\", _ENV)\
+if f then local ok, re =  pcall(f, ...)\
+ if not ok then log(re) end else log(tostring(r)) end\
+--[[classtype: 006-SDL2.lua]]--\
+ local f, r = load(\"class.lfrt.api.api(require('SDL'), 'lfrt-beta:sdl2', 0)\\\
+\", \"=classtype: 006-SDL2.lua\", \"t\", _ENV)\
 if f then local ok, re =  pcall(f, ...)\
  if not ok then log(re) end else log(tostring(r)) end\
 --[[classtype: 356-runtime.lua]]--\

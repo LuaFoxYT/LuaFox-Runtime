@@ -127,6 +127,56 @@ _G.log = function(...)
 	end
 	f:write(a .. '\n')
 end
+--process--
+local proc = {}
+proc.procs = {}
+proc.new = function(self, f, iscont, ...)
+  local p = {}
+	if iscont then
+		p.thread = coroutine.create(function(...)
+				repeat
+						 local ok, stop = pcall(f, ...)
+						if not ok then log('Process Error:' .. tostring(stop)) end
+				until stop
+		end)
+	else
+		p.thread = coroutine.create(function(...)
+			local ok, r = pcall(f, ...)
+			if not ok then log('Process Error: ' .. tostring(r)) end
+		end)
+	end
+  ok, err = coroutine.resume(p.thread, ...)
+  if not ok then
+  	error('could not start process:' .. tostring(err), 2)
+  end
+  self.procs[#self.procs + 1] = p
+  return #self.procs
+end
+_G.process = procs
+--promises--
+_G.Promise = function(f)
+	local tb = {f}
+	local flushed = false
+	process:new(function()
+		repeat until flushed
+		local latest = {}
+		for i, v in ipairs(tb) do
+			latest = table.pack(pcall(v, table.unpack(latest, 2, -1)))
+			if not latest[1] then
+				error('error while cycling promise callbacks: (callback #' .. i .. ") " .. latest[2], 0)
+			end
+		end
+	end)
+	local out = {}
+		out.after = function(f)
+			table.insert(tb, f)
+			return out
+		end
+		out.flush = function()
+			flushed = true
+		end
+	return out
+end
 return function(cb, ...)
 	local tb = {pcall(cb, ...)}
 	if not tb[1] then

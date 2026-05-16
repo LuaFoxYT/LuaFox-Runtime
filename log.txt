@@ -1,0 +1,14 @@
+--[LuaFox Runtime Initialization]--	
+classtype: 002-term.lua:7: unexpected symbol near ')'	
+creating api: lfrt:filesystem version 0	
+added class: lfrt:filesystem of type [api]	
+creating api: lfrt:tbfs version 0	
+added class: lfrt:tbfs of type [api]	
+creating api: lfrt:json version 0	
+added class: lfrt:json of type [api]	
+creating api: lfrt-beta:sdl2 version 0	
+added class: lfrt-beta:sdl2 of type [api]	
+creating api: lfrt:runtime version 0	
+added class: lfrt:runtime of type [api]	
+--[Appliation Start]--	
+Font: 0x30033b4568	
