@@ -5,7 +5,7 @@ local function doCmd(a, args)
 if a == 'lfar' then
   local ok, _ = lfrt:lfar(args[2], table.unpack(args, 3, #args))
 elseif a == 'path' then
-  print('comming soon')
+  log(lfrt:path(args[2], table.unpack(args, 3, #args)))
 elseif a == 'lua' then
   local f = io.open(args[2], 'r')
 	local dat = f:read('*all')

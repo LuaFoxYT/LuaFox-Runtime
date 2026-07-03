@@ -24,25 +24,36 @@ function lfrt.run(buffer, ...)
 	end
 	return false, r
 end
+lfrt.path = function(self, path, ...)
+	local ogd = fs.pwd()
+	fs.pwd(path)
+	local fp = fs.pwd() .. '/'
+	log(fp)
+	fs.pwd(ogd)
+	
+	_ENV.lfarP = fp
+	local f = fs.open(lfarP .. '_MAIN_.lua', 'r')
+  local dat = f:read('*all')
+  f:flush()
+  f:close()
+
+	return (function(...)
+		local tb = table.pack(self.run(dat, ...))
+		fs.remove(lfarP)
+		return table.unpack(tb, 1, -1)
+	end)(...)
+end
 lfrt.lfar = function(self, path, ...)
 	local mypath = fs.pwd()
-	_ENV.lfarP = mypath .. '.lfar-' .. math.random(99999) .. "/"
+	local prgp = mypath .. '.lfar-' .. math.random(99999)  .. "/"
 	local f = fs.open(path)
     local tb = table.parse(f:read('*all'))
     f:flush()
     f:close()
     for k, v in pairs(tb) do
-      fs.create(lfarP .. k, v.content)
+      fs.create(prgp .. k, v.content)
     end
-    local f = fs.open(lfarP .. '_MAIN_.lua', 'r')
-    local dat = f:read('*all')
-    f:flush()
-    f:close()
-
-    return (function(...)
-	local tb = table.pack(self.run(dat, ...))
-	fs.remove(lfarP)
-	return table.unpack(tb, 1, -1)
-	end)(...)
+    
+    return self:path(prgp, ...)
   end
 return lfrt
