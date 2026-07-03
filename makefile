@@ -1,4 +1,5 @@
 linux:
+	cd lfpp/ && make
 	lua targets/Linux.lua
 	mkdir lfrt
 	mv init.lua lfrt
@@ -12,6 +13,7 @@ linux:
 	cp src/lfrt-bin-linux.sh /usr/bin/lfrt
 	chmod a+x /usr/bin/lfrt
 	echo 'installing lfdev'
+	cd lfdev/ && make
 	cp lfdev/out.lfar $(HOME)/.config/lfrt/prg/lfdev.lfar
 clean:
 	rm -r lfrt
