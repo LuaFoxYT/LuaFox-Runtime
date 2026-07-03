@@ -12,10 +12,10 @@ linux:
 	cp src/lfrtcl.lua $(HOME)/.config/lfrt
 	cp src/lfrt-bin-linux.sh /usr/bin/lfrt
 	chmod a+x /usr/bin/lfrt
-	echo 'installing lfdev'
 
 linux-full:
 	$(MAKE) linux
+	echo "installing LFdev"
 	cd lfdev/ && make ALL
 
 clean:

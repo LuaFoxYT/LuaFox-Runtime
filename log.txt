@@ -1,0 +1,13 @@
+1	../../echo.lfar	
+--[LuaFox Runtime Initialization]--	
+creating api: lfrt:term version 0	
+added class: lfrt:term of type [api]	
+creating api: lfrt:filesystem version 0	
+added class: lfrt:filesystem of type [api]	
+creating api: lfrt:tbfs version 0	
+added class: lfrt:tbfs of type [api]	
+creating api: lfrt:json version 0	
+added class: lfrt:json of type [api]	
+creating api: lfrt:runtime version 0	
+added class: lfrt:runtime of type [api]	
+--[Appliation Start]--	
