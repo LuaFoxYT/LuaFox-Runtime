@@ -37,8 +37,7 @@ for i=0, 999 do
 		end
 	end
 end
-term.write('LFDev Terminal (LuaFox Runtime) Alpha1 \n')
-term.write(fs.pwd() .. '> ')
+term.write('LFDev Terminal (LuaFox Runtime) Alpha1\n')
 if args[1] then
 	cmdexec(args[1], table.unpack(args, 2, #args))
 else
@@ -53,10 +52,8 @@ term.read(function(txt)
 		return true
 	elseif args[1] == 'cd' then
 		fs.pwd(args[2])
-    term.write(fs.pwd() .. '> ')
 		return nil
 	end
 	cmdexec(table.unpack(args, 1, #args))
-	 term.write(fs.pwd() .. '> ')
-end, true)
+end, true, fs.pwd() .. '> ')
 end

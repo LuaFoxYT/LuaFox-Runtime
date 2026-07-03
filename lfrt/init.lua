@@ -143,20 +143,30 @@ class:append(class:newType(\\\"lfrt:api\\\", {\\\
 if f then local ok, re =  pcall(f, ...)\
  if not ok then log(re) end else log(tostring(r)) end\
 --[[classtype: 002-term.lua]]--\
- local f, r = load(\"local term = {\\\
+ local f, r = load(\"local L = require(\\\"linenoise\\\")\\\
+local reading = false\\\
+local latest = \\\"\\\"\\\
+local term = {\\\
   write = function(txt)\\\
-    io.write(tostring(txt))\\\
+    a = tostring(txt)\\\
+    latest = a\\\
+    if not reading then\\\
+    io.write(a)\\\
+    else\\\
+      reading = false\\\
+    end\\\
   end,\\\
-  read = function(callback, cont)\\\
+  read = function(callback, cont, text)\\\
   \\9assert(type(callback) == 'function', 'invalid argument #1, function expected got ' .. type(callback))\\\
-  \\9assert(type(cont) == 'boolean', 'invalid argument #2, boolean expected got ' .. type(cont)))\\\
+  \\9assert(type(cont) == 'boolean', 'invalid argument #2, boolean expected got ' .. type(cont))\\\
     coroutine.resume(coroutine.create(function()\\\
+      reading = true\\\
       if cont then\\\
         repeat\\\
-        ok, go = pcall(callback, io.read('*line'))\\\
+        ok, go = pcall(callback, L.linenoise((text or latest)))\\\
         until not ok or go == true\\\
       else\\\
-        local ok, r pcall(callback, io.read('*line'))\\\
+        local ok, r pcall(callback, L.linenoise((text or latest)))\\\
         if ok == false then\\\
         \\9log('term.read error: ', r)\\\
         end\\\
@@ -164,7 +174,7 @@ if f then local ok, re =  pcall(f, ...)\
     end))\\\
   end,\\\
   clear = function()\\\
-  \\9return os.execute('clear')\\\
+  \\9return L.clearscreen()\\\
   end\\\
 }\\\
 class.lfrt.api.api(term, 'lfrt:term', 0)\", \"=classtype: 002-term.lua\", \"t\", _ENV)\
@@ -226,11 +236,6 @@ if f then local ok, re =  pcall(f, ...)\
  if not ok then log(re) end else log(tostring(r)) end\
 --[[classtype: 005-json.lua]]--\
  local f, r = load(\"class.lfrt.api.api((require('json') or {}), 'lfrt:json', 0)\", \"=classtype: 005-json.lua\", \"t\", _ENV)\
-if f then local ok, re =  pcall(f, ...)\
- if not ok then log(re) end else log(tostring(r)) end\
---[[classtype: 006-SDL2.lua]]--\
- local f, r = load(\"class.lfrt.api.api(require('SDL'), 'lfrt-beta:sdl2', 0)\\\
-\", \"=classtype: 006-SDL2.lua\", \"t\", _ENV)\
 if f then local ok, re =  pcall(f, ...)\
  if not ok then log(re) end else log(tostring(r)) end\
 --[[classtype: 356-runtime.lua]]--\
