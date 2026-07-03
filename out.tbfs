@@ -1,1 +1,0 @@
-{["/_MAIN_.lua"] = {content = "local term = class:getAPI('tern', 0)\nlocal json = class:getAPI('json', 0)\nlog(tostring(json))", type = "file"}, ["/deez"] = {content = "", type = "file"}}

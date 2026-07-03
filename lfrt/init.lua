@@ -149,18 +149,14 @@ local latest = \\\"\\\"\\\
 local term = {\\\
   write = function(txt)\\\
     a = tostring(txt)\\\
-    latest = a\\\
-    if not reading then\\\
+\\9\\9latest = a\\\
     io.write(a)\\\
-    else\\\
-      reading = false\\\
-    end\\\
   end,\\\
   read = function(callback, cont, text)\\\
   \\9assert(type(callback) == 'function', 'invalid argument #1, function expected got ' .. type(callback))\\\
   \\9assert(type(cont) == 'boolean', 'invalid argument #2, boolean expected got ' .. type(cont))\\\
-    coroutine.resume(coroutine.create(function()\\\
-      reading = true\\\
+    --coroutine.resume(coroutine.create(function()\\\
+      --reading = true\\\
       if cont then\\\
         repeat\\\
         ok, go = pcall(callback, L.linenoise((text or latest)))\\\
@@ -171,7 +167,7 @@ local term = {\\\
         \\9log('term.read error: ', r)\\\
         end\\\
       end\\\
-    end))\\\
+    --end))\\\
   end,\\\
   clear = function()\\\
   \\9return L.clearscreen()\\\

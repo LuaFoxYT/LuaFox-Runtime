@@ -1,9 +1,9 @@
 local args = {...}
 local fs = class:getAPI('filesystem', 0)
-print(args[1])
+--print(args[1])
 local tb = {}
 if args[1] == '-c' then
-  print(args[2])
+  --print(args[2])
 	for i, fn in ipairs(fs.list(args[2], false, true)) do
 		if fs.attributes(args[2] .. fn).mode == 'file' then
 			local f = fs.open(args[2] .. fn, 'rb')

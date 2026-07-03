@@ -42,6 +42,7 @@ term.write('LFDev Terminal (LuaFox Runtime) Alpha1\n')
 if args[1] then
 	cmdexec(args[1], table.unpack(args, 2, #args))
 else
+term.write("\nCurrentDir: [" .. pwd .. "]\n")
 term.read(function(txt)
 	local args = txt:split(' ')
 	for i=1, #args do
@@ -50,7 +51,7 @@ term.read(function(txt)
 	end
 	local argsb = {}
 	for k, v in pairs(args) do
-		print(k, v)
+		--print(k, v)
 		table.insert(argsb, v)
 	end
 	if args[1] == 'exit' then

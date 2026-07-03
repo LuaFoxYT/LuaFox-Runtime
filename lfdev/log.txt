@@ -15,4 +15,3 @@ true
 loading module: 001-json.lua	
 creating api: TheLuaFox86:json version 0	
 added class: TheLuaFox86:json of type [api]	
-true	
