@@ -13,7 +13,14 @@ linux:
 	cp src/lfrt-bin-linux.sh /usr/bin/lfrt
 	chmod a+x /usr/bin/lfrt
 	echo 'installing lfdev'
-	cd lfdev/ && make
-	cp lfdev/out.lfar $(HOME)/.config/lfrt/prg/lfdev.lfar
+
+linux-full:
+	$(MAKE) linux
+	cd lfdev/ && make ALL
+
 clean:
+	cd lfpp/ && make clean
 	rm -r lfrt
+
+clean-full:
+	$(MAKE) clean
