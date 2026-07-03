@@ -1,1 +1,0 @@
-Error: /home/hello/.config/lfrt/lfrtcl.lua:10: attempt to index a nil value (local 'f')	

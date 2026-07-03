@@ -1,0 +1,3 @@
+[submodule "lfpp"]
+	path = lfpp
+	url = git@github.com:LuaFoxYT/LuaFox-Platforn-Core.git
