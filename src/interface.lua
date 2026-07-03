@@ -25,21 +25,23 @@ function lfrt.run(buffer, ...)
 	return false, r
 end
 lfrt.lfar = function(self, path, ...)
+	local mypath = fs.pwd()
+	_ENV.lfarP = mypath .. '.lfar-' .. math.random(99999) .. "/"
 	local f = fs.open(path)
     local tb = table.parse(f:read('*all'))
     f:flush()
     f:close()
     for k, v in pairs(tb) do
-      fs.create('./.lfar' .. k, v.content)
+      fs.create(lfarP .. k, v.content)
     end
-    local f = fs.open('./.lfar/_MAIN_.lua', 'r')
+    local f = fs.open(lfarP .. '_MAIN_.lua', 'r')
     local dat = f:read('*all')
     f:flush()
     f:close()
-    _G.lfarP = './.lfar/'
+
     return (function(...)
 	local tb = table.pack(self.run(dat, ...))
-	fs.remove('./.lfar/')
+	fs.remove(lfarP)
 	return table.unpack(tb, 1, -1)
 	end)(...)
   end

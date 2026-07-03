@@ -111,8 +111,8 @@ end
     end
   end
   fs.pwd = function(val)
-    if val then
-      lfs.chdir(val)
+		if val then
+      log(lfs.chdir(val))
     end
     return lfs.currentdir()
   end

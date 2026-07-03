@@ -37,6 +37,7 @@ for i=0, 999 do
 		end
 	end
 end
+pwd = fs.pwd()
 term.write('LFDev Terminal (LuaFox Runtime) Alpha1\n')
 if args[1] then
 	cmdexec(args[1], table.unpack(args, 2, #args))
@@ -47,13 +48,19 @@ term.read(function(txt)
 	   	args[i] = args[i]:gsub('\\s', ' ')
 		args[i] = args[i]:gsub('\\n', '\n')
 	end
+	local argsb = {}
+	for k, v in pairs(args) do
+		print(k, v)
+		table.insert(argsb, v)
+	end
 	if args[1] == 'exit' then
 		log(cmdexec('tbfs', '-c', lfarP .. '/Data', os.getenv('HOME') .. '/lfdev-save.tbfs'))
 		return true
 	elseif args[1] == 'cd' then
-		fs.pwd(args[2])
-		return nil
+		pwd = fs.pwd(args[2])
+	else
+		cmdexec(table.unpack(argsb, 1, #argsb))
 	end
-	cmdexec(table.unpack(args, 1, #args))
-end, true, fs.pwd() .. '> ')
+	term.write("\nCurrentDir: [" .. pwd .. "]\n")
+end, true, '~~> ')
 end
