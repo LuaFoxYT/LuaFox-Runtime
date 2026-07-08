@@ -12,6 +12,7 @@ linux:
 	cp src/lfrtcl.lua $(HOME)/.config/lfrt
 	cp src/lfrt-bin-linux.sh /usr/bin/lfrt
 	chmod a+x /usr/bin/lfrt
+	
 
 linux-full:
 	$(MAKE) linux

@@ -4,3 +4,6 @@
 [submodule "lfdev"]
 	path = lfdev
 	url = https://github.com/LuaFoxYT/LuaFox-Runtime-Develoupment-Program.git
+[submodule "lfpk"]
+	path = lfpk
+	url = https://github.com/LuaFoxYT/LFPK-lfrt.git

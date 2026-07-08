@@ -1,5 +1,5 @@
 do
-  local tbfs = {} 
+  local tbfs = {}
   tbfs.read = function(ap, fp)
   	assert(type(ap) == 'string', 'invalid argument #1; expected string got ' .. type(ap))
   	assert(type(fp) == 'string', 'invalid argument #2; expected string got ' .. type(fp))
@@ -25,7 +25,7 @@ do
   function tbfs.compress(from, to)
   	assert(type(from) == 'string', 'invalid argument #1; expected string got ' .. type(from))
   	assert(type(to) == 'string', 'invalid argument #2; expected string got ' .. type(to))
-  	assert(fs.exists(from), 'file not found; ' .. fr)
+  	assert(fs.exists(from), 'file not found; ' .. from)
   	local tb = {}
   	for _, fn in ipairs(fs.list(from, false, true)) do
   		if fs.attributes(from .. fn).mode == 'file' then

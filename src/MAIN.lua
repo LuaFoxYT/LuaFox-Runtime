@@ -1,9 +1,6 @@
-
 _G.class =  {}
 class._searchers = {
 'lfrt',
-'FlashFox',
-'TheLuaFox86',
 }
 class._types = {}
 function class:addSearcher(name, place)
@@ -14,6 +11,7 @@ function class:addSearcher(name, place)
 	self._searchers[i] = name
 end
 function class:append(tb)
+	assert(type(tb) == "ClassType", "Invalid Argument #1: ClassType Expected Got: " .. type(tb), 2)
   if not self[tb.domain] then self[tb.domain] = {} end
   self[tb.domain][tb.type] = tb
   self._types[tb.type] = tb
@@ -76,6 +74,7 @@ function class:setById(t, id, val)
 function class:newType(id, tb)
   tb.domain = id:split(":")[1]
   tb.type = id:split(":")[2]
+  log("creating classtype: " .. tb.type or "?")
   local out = setmetatable(tb, {__index = function(s, k)
     if k == id:split(":")[2] then
       return function(...)
@@ -92,14 +91,14 @@ function class:newType(id, tb)
           else
             return rawget(_s, _k)
           end
-        end})
+        end, __type=id})
         class:setById(s.type, obj.id, obj)
         log('added class: ' .. obj.id .. ' of type [' .. id:split(':')[2] .. ']')
       end
     else
       return rawget(s, k)
   	end
-  end})
+  end, __type="ClassType"})
   return out
 end
 function class:getAPI(id, version)
@@ -122,6 +121,6 @@ function class:getAPI(id, version)
     else
     	return rawget(s, k)
     end
-  end})
+  end, __type="lfrt:api"})
   return b
 end

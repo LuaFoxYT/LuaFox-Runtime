@@ -2,7 +2,7 @@ local buffer = ''
 local function buff(data, ch)
 	return '--[[' .. ch .. ']]--\n local f, r = load(' .. string.format('%q, %q, ', data, '=' .. ch) .. '"t", _ENV)\nif f then local ok, re =  pcall(f, ...)\n if not ok then log(re) end else log(tostring(r)) end\n'
 end
-local lfpp = require('lfpp')
+local lfpp = require('lfpp')(function()
 --lfpp._G = lfpp
 --_ENV = lfpp
 print('classtypes')
@@ -48,3 +48,4 @@ local f = fs.open('./init.lua', 'w+')
 f:write(a)
 f:flush()
 f:close()
+end)

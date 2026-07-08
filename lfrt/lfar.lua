@@ -1,5 +1,5 @@
 local lfar = {
-  run = function(path, env, ...)
+  run = function(path, data, env, ...)
     local f = fs.open(path)
     local tb = table.parse(f:read('*all'))
     f:flush()
@@ -7,7 +7,7 @@ local lfar = {
     for k, v in pairs(tb) do
       fs.create('./lfar' .. k, v.content)
     end
-    env.lfarP = './lfar/'
+    env.path = './lfar/'
     return pcall(loadfile('./lfar/_Main_.lua', 't', env))
   end
 }
