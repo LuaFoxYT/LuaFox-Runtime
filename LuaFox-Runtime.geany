@@ -19,7 +19,7 @@ indent_mode=2
 
 [project]
 name=LuaFox-Runtime
-base_path=/home/Admin/Documents/LuaFox-Runtime
+base_path=/home/LuaFox/Documents/LuaFox-Runtime
 description=
 file_patterns=
 
@@ -29,9 +29,10 @@ long_line_column=72
 
 [files]
 current_page=0
+FILE_NAME_0=978;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F008-gui.lua;0;2
 
 [VTE]
-last_dir=/home/Admin
+last_dir=/home/LuaFox/Documents/lfrt-launcher
 
 [build-menu]
 NF_00_LB=make for linux

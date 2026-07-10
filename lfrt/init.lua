@@ -332,7 +332,7 @@ class:append(class:newType(\\\"lfui:window\\\", {\\\
 \\9\\9local win = obj0\\\
 \\9\\9win._window = Gtk.Window(obj)\\\
 \\9\\9win._obj = Gtk.Box({\\\
-\\9\\9    orientation = Gtk.Orientation.HORIZONTAL,\\\
+\\9\\9    orientation = Gtk.Orientation.VERTICAL,\\\
 \\9\\9\\9spacing = 10,\\\
 \\9\\9\\9margin = 15\\\
 \\9\\9})\\\
@@ -346,6 +346,9 @@ class:append(class:newType(\\\"lfui:window\\\", {\\\
 \\9\\9function win:loop()\\\
 \\9\\9\\9Gtk.main()\\\
 \\9\\9end\\\
+\\9\\9function win:destroy()\\\
+\\9\\9\\9self._window:close()\\\
+\\9\\9end\\\
 \\9\\9return win\\\
 \\9end\\\
 }))\\\
@@ -355,10 +358,10 @@ function whandle(func, props, obj0)\\\
 \\9for k, v in pairs(props) do\\\
 \\9\\9obj[v.rKey] = obj0[k]\\\
 \\9end \\\
-\\9obj.valign = Gtk.Align[(obj0.align[1] or \\\"START\\\")]\\\
-\\9obj.halign = Gtk.Align[(obj0.align[2] or \\\"START\\\")]\\\
-\\9obj.vexpand = obj0.expand[1]\\\
-\\9obj.hexpand = obj0.expand[2]\\\
+\\9obj.halign = Gtk.Align[(obj0.align[1] or \\\"START\\\")]\\\
+\\9obj.valign = Gtk.Align[(obj0.align[2] or \\\"START\\\")]\\\
+\\9obj.hexpand = obj0.expand[1]\\\
+\\9obj.vexpand = obj0.expand[2]\\\
 \\9local box = obj0\\\
 \\9box._obj = func(obj)\\\
 \\9function box:update()\\\
@@ -378,6 +381,15 @@ function whandle(func, props, obj0)\\\
 \\9\\9\\9end\\\
 \\9\\9end\\\
 \\9end\\\
+\\9function box:fetch()\\\
+\\9\\9for k, v in pairs(props) do\\\
+\\9\\9\\9if v.rKey:sub(1, 3) == \\\"on_\\\" then\\\
+\\9\\9\\9\\9self[k] = self._obj[v.rKey]\\\
+\\9\\9\\9else\\\
+\\9\\9\\9\\9self[k] = self._obj['get_' .. v.rKey](self._obj)\\\
+\\9\\9\\9end\\\
+\\9\\9end\\\
+\\9end\\\
 \\9function box:destroy()\\\
 \\9\\9self._obj:destroy()\\\
 \\9end\\\
@@ -394,8 +406,11 @@ class:append(class:newType(\\\"lfui:button\\\", {\\\
 \\9\\9return whandle(Gtk.Button, {label = {rKey='label'}, onClick={rKey=\\\"on_clicked\\\"}}, obj0)\\\
 \\9end\\\
 }))\\\
-\\\
-\\\
+class:append(class:newType(\\\"lfui:entry\\\", {\\\
+\\9constructor=function(cls, clst, obj0)\\\
+\\9\\9return whandle(Gtk.Entry, {onSubmit={rKey=\\\"on_activate\\\"}, text={rKey=\\\"text\\\"}}, obj0)\\\
+\\9end\\\
+}))\\\
 \", \"=classtype: 008-gui.lua\", \"t\", _ENV)\
 if f then local ok, re =  pcall(f, ...)\
  if not ok then log(re) end else log(tostring(r)) end\

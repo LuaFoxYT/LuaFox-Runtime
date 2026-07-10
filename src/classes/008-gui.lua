@@ -15,7 +15,7 @@ class:append(class:newType("lfui:window", {
 		local win = obj0
 		win._window = Gtk.Window(obj)
 		win._obj = Gtk.Box({
-		    orientation = Gtk.Orientation.HORIZONTAL,
+		    orientation = Gtk.Orientation.VERTICAL,
 			spacing = 10,
 			margin = 15
 		})
@@ -29,6 +29,9 @@ class:append(class:newType("lfui:window", {
 		function win:loop()
 			Gtk.main()
 		end
+		function win:destroy()
+			self._window:close()
+		end
 		return win
 	end
 }))
@@ -38,10 +41,10 @@ function whandle(func, props, obj0)
 	for k, v in pairs(props) do
 		obj[v.rKey] = obj0[k]
 	end 
-	obj.valign = Gtk.Align[(obj0.align[1] or "START")]
-	obj.halign = Gtk.Align[(obj0.align[2] or "START")]
-	obj.vexpand = obj0.expand[1]
-	obj.hexpand = obj0.expand[2]
+	obj.halign = Gtk.Align[(obj0.align[1] or "START")]
+	obj.valign = Gtk.Align[(obj0.align[2] or "START")]
+	obj.hexpand = obj0.expand[1]
+	obj.vexpand = obj0.expand[2]
 	local box = obj0
 	box._obj = func(obj)
 	function box:update()
@@ -61,6 +64,15 @@ function whandle(func, props, obj0)
 			end
 		end
 	end
+	function box:fetch()
+		for k, v in pairs(props) do
+			if v.rKey:sub(1, 3) == "on_" then
+				self[k] = self._obj[v.rKey]
+			else
+				self[k] = self._obj['get_' .. v.rKey](self._obj)
+			end
+		end
+	end
 	function box:destroy()
 		self._obj:destroy()
 	end
@@ -77,5 +89,8 @@ class:append(class:newType("lfui:button", {
 		return whandle(Gtk.Button, {label = {rKey='label'}, onClick={rKey="on_clicked"}}, obj0)
 	end
 }))
-
-
+class:append(class:newType("lfui:entry", {
+	constructor=function(cls, clst, obj0)
+		return whandle(Gtk.Entry, {onSubmit={rKey="on_activate"}, text={rKey="text"}}, obj0)
+	end
+}))
