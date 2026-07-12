@@ -29,10 +29,9 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=978;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F008-gui.lua;0;2
 
 [VTE]
-last_dir=/home/LuaFox/Documents/lfrt-launcher
+last_dir=/home/LuaFox
 
 [build-menu]
 NF_00_LB=make for linux
