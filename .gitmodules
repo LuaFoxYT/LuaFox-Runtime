@@ -7,3 +7,4 @@
 [submodule "lfpk"]
 	path = lfpk
 	url = https://github.com/LuaFoxYT/LFPK-lfrt.git
+	branch = main

@@ -124,3 +124,9 @@ function class:getAPI(id, version)
   end, __type="lfrt:api"})
   return b
 end
+function class:config(key)
+	local cfg = {
+		["Beta-Mode"] = false,
+	}
+	return cfg[key]
+end
