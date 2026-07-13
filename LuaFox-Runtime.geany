@@ -28,14 +28,13 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=3
-FILE_NAME_0=3120;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2FMAIN.lua;0;2
-FILE_NAME_1=29;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F008-gui.lua;0;2
-FILE_NAME_2=783;Make;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fmakefile;0;2
-FILE_NAME_3=0;None;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Flfpk%2F.git;0;2
+current_page=2
+FILE_NAME_0=3105;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F356-runtime.lua;0;2
+FILE_NAME_1=0;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F004-tbfs.lua;0;2
+FILE_NAME_2=240;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F003-filesystem.lua;0;2
 
 [VTE]
-last_dir=/mnt/sdcard/Documents/LFPK-lfrt
+last_dir=/mnt/sdcard/Documents/LuaFox-Runtime
 
 [build-menu]
 NF_00_LB=make for linux

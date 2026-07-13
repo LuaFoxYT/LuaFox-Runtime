@@ -7,5 +7,5 @@ do
 	--custom lfrt filesystem functions here (if i add)--
 	fsa.open = nil
 	--end--
-	class.lfrt.api.api(fsa, "lfrt:fs", 1)
+	class.lfrt.api.api(fsa, "lfrt:filesystem", 1)
 end
