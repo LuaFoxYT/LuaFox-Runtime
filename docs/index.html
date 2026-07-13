@@ -1,0 +1,49 @@
+<h1 style="text-align: center;">About LuaFox Runtime</h1>
+<hr />
+<h2>what is the luafox runtime:</h2>
+<p>the luafox runtime is a Lua Virtual Machine designed to create a way for users to create multi platform programs IN LUA!</p>
+<p>but to know realy what it is you need to know the storry behind it</p>
+<p>i was inspired by the <a href="https://luart.org/" target="_blank">LuaRT</a> project its a framework for lua on windows. bassicly allows you to create windows applications in lua but, ONLY ON WINDOWS! so yeah.</p>
+<p>i wanted to get my stuff to work on linux too</p>
+<p>however im going to use it to bring my project to windows</p>
+<p>i then thought of how java apps are able to work on windows and linux, so then i learned that it uses somthing called JVM its a virtual machine that runs java code as machine code (I think). you compile you java app and it compiles it to the code that the vm undestands. these apps are callled java executables ("<strong>.jar</strong>" files)</p>
+<p>however those apps only work for the version of java it was compiled to (but it runs pretty fast though)</p>
+<p>i though what if i can make a simmilar concept but with lua it would be interestingso i did its in alpha state but i think its pretty cool</p>
+<ul>
+<li>instead of .jar files you have .lfar (which is just an archive)</li>
+<li>instead of compiling for the vm the vm simply provieds custom apis and methods that adapt to the platform its  running on</li>
+<li>it has its own package manager aswell called LFPKM (LuaFox (runtime) Package Manager)</li>
+<li>and all previous versions of apis are kept apps can request old versions of apis this is so older applications work even on newer versions of LuaFox-Runtime without needing to install older versions of it</li>
+<li>and its open source</li>
+</ul>
+<div><hr /></div>
+<h1 style="text-align: center;"> LuaFox Runtime Documentation</h1>
+<hr />
+<p> </p>
+<p><span style="color: #ff0000;">Warning: Anything In Here Can Change Any Time Without Notice.</span></p>
+<p><span style="color: #ff0000;"> this project currently is not ready for Full Production use and</span></p>
+<p><span style="color: #ff0000;">WE DO NOT PROVIDE ANY WARRENTY OR GARRENTY OF ANY TYPE THIS PROJECT IS INCOMPLETE AND UNSTABLE<br /> </span></p>
+<p><span style="color: #ff0000;">PROCEED AT YOURE OWN RISK</span></p>
+<p>---------------------------------------------------------------------------------</p>
+<h2>The Class Interface:</h2>
+<p>i created a class interface for accessing apis and help with coding i took insperation from Minecraft Java Edition Modding for this</p>
+<p>_G.class:</p>
+<p><strong><span style="color: #0000ff;">function <span style="color: #99cc00;">getAPI</span></span><span style="color: #00ffff;">(</span><span style="color: #808080;">ID : string ,</span> <span style="color: #00ffff;"><span style="color: #808080;">Version: number</span>)</span></strong></p>
+<p>  bassicly require of the luafox runtime</p>
+<p>  id is the id of the api</p>
+<p>  </p>
+<p>function GetByID(Type : string, ID: string)</p>
+<h2> --yeah i stopped editing here il get back to it soon (Maybe)--</h2>
+<h2> </h2>
+<h2> </h2>
+<h2>here are some ethics to follow when creating programs for the LuaFox Runtime:</h2>
+<p>when creating a class you do not use the LFRT domain instead use youre username or first name and initials of youre last name.</p>
+<p>(you may also use youre company/orginisation name or even community name)</p>
+<p>first option: if i use my username: LuaFoxYT:ExampleClassName</p>
+<p>second option:</p>
+<p>lets say my last name is royal-La'belle i use: LuaFoxRL:ExampleClassName</p>
+<p>for classtypes you can be creative it would depend if youre making a API/Library or if youre making it for youre game</p>
+<p>i would use the name of the api if its a classtyoe</p>
+<p>like my gui api for LuaFox Runtime Named LFui i use the domain "lfui"</p>
+<p> </p>
+<p> </p>

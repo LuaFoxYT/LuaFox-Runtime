@@ -28,9 +28,9 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
+current_page=1
 FILE_NAME_0=3105;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F356-runtime.lua;0;2
-FILE_NAME_1=0;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F004-tbfs.lua;0;2
+FILE_NAME_1=423;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F004-tbfs.lua;0;2
 FILE_NAME_2=240;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F003-filesystem.lua;0;2
 
 [VTE]

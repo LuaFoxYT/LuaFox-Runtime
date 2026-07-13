@@ -251,8 +251,6 @@ if f then local ok, re =  pcall(f, ...)\
   \\9argc(fs.exists(ap), 'archive not found at ' .. ap)\\\
      local dat = table.parse(fs.readAll(ap))[fp]\\\
      argc(dat, 'file in archive not found at' .. fp)\\\
-    f:flush()\\\
-\\9\\9f:close()\\\
     return dat\\\
   end\\\
   function tbfs.extract(fr, to)\\\
