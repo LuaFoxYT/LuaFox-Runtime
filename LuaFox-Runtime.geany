@@ -28,13 +28,17 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
+current_page=6
 FILE_NAME_0=3105;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F356-runtime.lua;0;2
 FILE_NAME_1=874;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F004-tbfs.lua;0;2
 FILE_NAME_2=240;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F003-filesystem.lua;0;2
+FILE_NAME_3=300;Make;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2Flfrt-launcher%2FMakefile;0;2
+FILE_NAME_4=0;None;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2Flfrt-launcher%2FLICENSE;0;2
+FILE_NAME_5=0;None;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2Flfrt-launcher%2Flog.txt;0;2
+FILE_NAME_6=0;None;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2Flfrt-launcher%2Fref.lfar;0;2
 
 [VTE]
-last_dir=/mnt/sdcard/Documents/LuaFox-Runtime
+last_dir=/mnt/sdcard/Documents/lfrt-launcher
 
 [build-menu]
 NF_00_LB=make for linux

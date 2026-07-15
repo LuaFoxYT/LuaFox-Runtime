@@ -23,11 +23,8 @@ do
 			local b = entryPath
 			for template, templatePath in pairs(fs.paths) do
 				log(b, template, templatePath, 1)
-				local f = b
-				local e = f:sub(2, 26)
-				local name = template .. ("_"):rep(25 - #template)
-				if e == name then
-					b = '/' .. templatePath .. b:sub(27, #b)
+				if b:sub(2, #template) == template then
+					b ='/' .. b:sub(#template + 1, #b)
 				end
 				log(b, template, templatePath, 2)
 			end

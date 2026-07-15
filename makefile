@@ -17,8 +17,8 @@ linux:
 linux-full:
 	$(MAKE) linux
 	echo "installing LFdev"
-	cp lfdev/ref.lfar $(HOME)/.config/lfrt/prg
-	cp lfpk/ref.lfar $(HOME)/.config/lfrt/prg
+	cp lfdev/ref.lfar $(HOME)/.config/lfrt/prg/lfdev.lfar
+	cp lfpk/ref.lfar $(HOME)/.config/lfrt/prg/lfpkm.lfar
 
 clean:
 	cd lfpp/ && make clean
@@ -41,5 +41,5 @@ luafoxOS:
 	cp src/lfrtcl.lua $(HOME)/.config/lfrt
 	cp src/lfrt-bin-linux.sh /usr/bin/lfrt
 	chmod a+x /usr/bin/lfrt
-	cp lfdev/ref.lfar $(HOME)/.config/lfrt/prg
-	cp lfpk/ref.lfar $(HOME)/.config/lfrt/prg
+	cp lfdev/ref.lfar $(HOME)/.config/lfrt/prg/lfdev.lfar
+	cp lfpk/ref.lfar $(HOME)/.config/lfrt/prg/lfpkm.lfar

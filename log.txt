@@ -1,4 +1,11 @@
-1	out.lfar	
-2	install	
-3	LuaFoxYT/lfrt-echo-template	
-error:	/usr/local/lib/lua/5.3/lfpp.lua:253: File Not Found: out.lfar	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
