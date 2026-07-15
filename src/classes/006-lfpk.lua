@@ -22,11 +22,12 @@ do
 		for entryPath, entry in pairs(a) do
 			local b = entryPath
 			for template, templatePath in pairs(fs.paths) do
-				log(b, template, templatePath, 1)
-				if b:sub(2, #template) == template then
-					b ='/' .. b:sub(#template + 1, #b)
+				local c = b:sub(2, #template + 1)
+				log(b, c, template, templatePath, 1)
+				if c == template then
+					b = templatePath .. b:sub(#template + 3, #b)
 				end
-				log(b, template, templatePath, 2)
+				log(b, c, template, templatePath, 2)
 			end
 			obj.files[b] = entry
 		end

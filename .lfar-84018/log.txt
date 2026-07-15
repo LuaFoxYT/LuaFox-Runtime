@@ -1,7 +1,0 @@
-creating api: lfrt:term version 0	
-added class: lfrt:term of type [api]	
-creating api: lfrt:filesystem version 0	
-added class: lfrt:filesystem of type [api]	
-creating api: lfrt:runtime version 0	
-added class: lfrt:runtime of type [api]	
-false	lfrt:173: attempt to concatenate a nil value (global 'lfarP')	
