@@ -22,10 +22,13 @@ do
 		for entryPath, entry in pairs(a) do
 			local b = entryPath
 			for template, templatePath in pairs(fs.paths) do
-				local c = b:sub(2, #template + 1)
+				local c = entryPath:split("/")[2]
 				log(b, c, template, templatePath, 1)
 				if c == template then
-					b = templatePath .. b:sub(#template + 3, #b)
+					b = templatePath:sub(1, -2)
+					for i, v in ipairs(entryPath:split('/')) do
+						if i > 2 then b = b .. "/" .. v end
+					end
 				end
 				log(b, c, template, templatePath, 2)
 			end

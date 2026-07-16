@@ -1,1 +1,1 @@
-class.lfrt.api.api((require('json') or {}), 'lfrt:json', 0)
+class.lfrt.api.api((require('lunajson') or {}), 'lfrt:json', 0)

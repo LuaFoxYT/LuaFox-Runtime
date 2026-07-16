@@ -7,7 +7,7 @@ apt install wget curl
 mdkir -p /usr/lcoal/lib/lua/5.3
 wget https://raw.githubusercontent.com/pkulchenko/serpent/refs/heads/master/src/serpent.lua -O /usr/local/lib/lua/5.3/serpent.lua
 luarocks install pegasus
-luarocks install luajson
+luarocks install lunajson
 luarocks install luagobject
 luarocks install linenoise
 luarocks install copas

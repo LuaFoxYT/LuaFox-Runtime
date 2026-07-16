@@ -1,11 +1,57 @@
+1	launch	
+2	lfpkm	
+3	install	
+4	luafoxyt/luafox-json-vm-interpreter	
+5	main	
+/mnt/sdcard/Documents/LuaFox-Runtime/.lfar-84018/	
+--[LuaFox Runtime Initialization]--	
+creating classtype: api	
+creating api: lfrt:term version 0	
+added class: lfrt:term of type [api]	
+creating api: lfrt:term version 1	
+added class: lfrt:term of type [api]	
+creating api: lfrt:filesystem version 0	
+added class: lfrt:filesystem of type [api]	
+creating api: lfrt:filesystem version 1	
+added class: lfrt:filesystem of type [api]	
+creating api: lfrt:tbfs version 0	
+added class: lfrt:tbfs of type [api]	
+creating api: lfrt:tbfs version 1	
+added class: lfrt:tbfs of type [api]	
+creating api: lfrt:json version 0	
+added class: lfrt:json of type [api]	
+creating api: lfrt:lfpk version 0	
+added class: lfrt:lfpk of type [api]	
+checking for luagoobject	
+found!	
+creating classtype: window	
+creating classtype: label	
+creating classtype: button	
+creating classtype: entry	
+creating api: lfrt:runtime version 0	
+added class: lfrt:runtime of type [api]	
+creating api: lfrt:runtime version 1	
+added class: lfrt:runtime of type [api]	
+--[Appliation Start]--	
 filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
-filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	
+/lfrtBin	lfrtBin	AppData	/home/LuaFox/.config/	1	
+/lfrtBin	lfrtBin	AppData	/home/LuaFox/.config/	2	
+/lfrtBin	lfrtBin	lfrtLib	/home/LuaFox/.config/lfrt/lib/	1	
+/lfrtBin	lfrtBin	lfrtLib	/home/LuaFox/.config/lfrt/lib/	2	
+/lfrtBin	lfrtBin	User	/home/LuaFox/	1	
+/lfrtBin	lfrtBin	User	/home/LuaFox/	2	
+/lfrtBin	lfrtBin	lfrt	/home/LuaFox/.config/lfrt/	1	
+/lfrtBin	lfrtBin	lfrt	/home/LuaFox/.config/lfrt/	2	
+/lfrtBin	lfrtBin	lfrtBin	/home/LuaFox/.config/lfrt/prg/	1	
+/home/LuaFox/.config/lfrt/prg	lfrtBin	lfrtBin	/home/LuaFox/.config/lfrt/prg/	2	
+/lfrtBin/lfjnvm.lfar	lfrtBin	AppData	/home/LuaFox/.config/	1	
+/lfrtBin/lfjnvm.lfar	lfrtBin	AppData	/home/LuaFox/.config/	2	
+/lfrtBin/lfjnvm.lfar	lfrtBin	lfrtLib	/home/LuaFox/.config/lfrt/lib/	1	
+/lfrtBin/lfjnvm.lfar	lfrtBin	lfrtLib	/home/LuaFox/.config/lfrt/lib/	2	
+/lfrtBin/lfjnvm.lfar	lfrtBin	User	/home/LuaFox/	1	
+/lfrtBin/lfjnvm.lfar	lfrtBin	User	/home/LuaFox/	2	
+/lfrtBin/lfjnvm.lfar	lfrtBin	lfrt	/home/LuaFox/.config/lfrt/	1	
+/lfrtBin/lfjnvm.lfar	lfrtBin	lfrt	/home/LuaFox/.config/lfrt/	2	
+/lfrtBin/lfjnvm.lfar	lfrtBin	lfrtBin	/home/LuaFox/.config/lfrt/prg/	1	
+/home/LuaFox/.config/lfrt/prg/lfjnvm.lfar	lfrtBin	lfrtBin	/home/LuaFox/.config/lfrt/prg/	2	
 filesystem.open is deprecated avoid using. now use filesystem.[readPart, writePart, readAll, writeAll]	

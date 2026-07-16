@@ -29,10 +29,12 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=1002;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F006-lfpk.lua;0;2
+FILE_NAME_0=1090;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F006-lfpk.lua;0;2
+FILE_NAME_1=64;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime%2Fsrc%2Fclasses%2F005-json.lua;0;2
+FILE_NAME_2=0;Lua;0;EUTF-8;1;1;0;%2Fhome%2FLuaFox%2FDocuments%2FLuaFox-Runtime-Develoupment-Program%2Fsrc%2FData%2Flib%2F001-json.lua;0;2
 
 [VTE]
-last_dir=/mnt/sdcard/Documents/LuaFox-Runtime
+last_dir=/mnt/sdcard/Documents/LuaFox-Runtime/src/classes
 
 [build-menu]
 NF_00_LB=make for linux
